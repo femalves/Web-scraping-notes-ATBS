@@ -1,0 +1,90 @@
+Test regex at RegexPal
+
+aa*
+The letter a is written, followed by a* (read as a star) which means
+"any number o a's, including 0 of them".
+
+bbbbb
+The letter b appears five times.
+
+(cc)*
+The letter c must appear any even number of times.
+
+(d | )
+The letter d is optional.
+
+Emails________________________________________________________________________
+
+
+The first part of an email can contain any uppercase letter (A-Z), lowercase
+letter (a-z) or number (0-9), as well as periods, underscores and plus signs.
+By putting all these possible sequences and symbols in brackets (as opposed to
+parentheses) we are saying "this symbol can be any one of these things we've
+listed in the brackets." The final plus sign means "these characters can occur
+as many times as they want to, but must occur at least once".
+
+@
+Must have the @ symbol
+
+[A-Za-z]+
+Must contain at least one uppercase or lowercase letter after the @.
+
+\.
+This is followed by a "."
+
+(com\org\edu\net)
+Finally, the email address ends with com, org, edu or net.
+
+By concatenating all of the rules, we have the following regular expression.
+[A-Za-z0-9\._+]+@[A-Za-z]+\.(com\org\edu\net)
+
+Commonly used symbols_________________________________________________________
+
+*
+Matches the preceding character or subexpression 0 or more times
+Ex: a*b* -> aaaaaaaaa, aaabbbbbb, bbbbbbb
+
++
+Matches the preceding character or subexpression 1 or more times
+Ex: a+b+ -> aaaaab, aaabbbbb, aaabbbb
+
+[]
+Matched any character within the brackets
+Ex: [A-Z] -> APPLES, CONSTITUTION, CELLPHONE
+
+()
+A grouped subexpression (these are evaluated first)
+Ex: (a*b)* -> aaabaab, abaaab, abababaaa
+
+{m, n}
+Matched the preceding character, subexpression, or bracketed character between
+m and n times
+Ex: a{2,3}b{2,3} -> aabbb, aaabbb, aabb
+
+[^]
+Matches any single character that is not in the brackets
+Ex: [^A-Z]* -> apple, lowercase, qwerty
+
+|
+Matches any character, string of characters, or subexpression, separated by |
+Ex: b(a|i|e)d -> bad, bid, bracketed
+
+.
+Matches any single character (including symbols, numbers, a space, etc.)
+Ex: b.d -> bad, bzd, b$d, b d
+
+\
+An escape character (this allows you to use 'special' characters as their literal meaning)
+Ex: \.\|\\ -> .|\
+
+^
+Indicates that a character or subexpression occurs at the beginning of a string
+Ex: ^a -> apple, at, asdf, a
+
+$
+Often used at the end of a regex.
+Ex: [A-Z]*[a-z]*$ -> ABCabc, zzzyx, Bob
+
+?!
+Does not contain
+Ex: ^((?![A-Z]).)*$ -> no-caps-here, Symb0l$ a4e f!ne.
